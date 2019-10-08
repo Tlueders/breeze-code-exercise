@@ -1,29 +1,50 @@
-import React from 'react'
+import React, {Component} from 'react'
 import { Button, Header, Modal, Menu } from 'semantic-ui-react'
 import CSVReader from "react-csv-reader";
 
-const handleForce = data => {
-    console.log(data);
-};
+class UploadModal extends Component {
+    constructor(){
+        super();
+        this.state = {
+            data: []
+        }
 
-const ModalModalExample = () => (
-    <Modal trigger={
-        <Menu.Item
-            name='upload'
-            >
-            Upload CSV
-        </Menu.Item>
-    }>
-        <Modal.Header>Upload a CSV</Modal.Header>
-        <Modal.Content>
-        <Modal.Description>
-            <Header>Import your CSV for People or Groups</Header>
-            <CSVReader
-                onFileLoaded={handleForce}
-            />
-        </Modal.Description>
-        </Modal.Content>
-    </Modal>
-)
+        this.handleForce = this.handleForce.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+    }
 
-export default ModalModalExample
+    handleForce(data) {
+        this.setState({
+            data: data
+        });
+    }
+
+    handleClick() {
+        console.log(this.state.data);
+    }
+
+    render(){
+        return(
+            <Modal trigger={
+                <Menu.Item
+                    name='upload'
+                    >
+                    Upload CSV
+                </Menu.Item>
+            }>
+                <Modal.Header>Upload a CSV</Modal.Header>
+                <Modal.Content>
+                <Modal.Description>
+                    <Header>Import your CSV for People or Groups</Header>
+                    <CSVReader
+                        onFileLoaded={this.handleForce}
+                    />
+                    <Button onClick={this.handleClick} primary style={{marginTop: '1rem'}}>Upload</Button>
+                </Modal.Description>
+                </Modal.Content>
+            </Modal>
+        );
+    }
+}
+
+export default UploadModal;
