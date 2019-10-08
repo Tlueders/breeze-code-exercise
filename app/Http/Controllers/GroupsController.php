@@ -37,6 +37,10 @@ class GroupsController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'group.*.group_name'    => 'required|max:255'
+        ]);
+        
         $groups = $request->json()->all();
         foreach ($groups as $group) {
             Group::firstOrCreate(['group_name'=>$group['group_name']]);
