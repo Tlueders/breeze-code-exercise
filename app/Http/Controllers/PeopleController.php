@@ -85,6 +85,13 @@ class PeopleController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'people.*.first_name'    => 'required|max:255',
+            'people.*.last_name'     => 'required|max:255',
+            'people.*.email_address' => 'required|email',
+            'people.*.group_id'      => 'integer',
+            'people.*.status'        => Rule::in(['active', 'archived'])
+        ]); 
         $person = Person::findOrFail($id);
         $person->update($request->all());
 

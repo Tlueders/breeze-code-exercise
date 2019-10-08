@@ -82,6 +82,9 @@ class GroupsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'group.*.group_name' => 'required|max:255'
+        ]);
         $group = Group::findOrFail($id);
         $group->update($request->all());
 
