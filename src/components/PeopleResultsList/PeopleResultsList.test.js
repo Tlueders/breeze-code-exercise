@@ -4,10 +4,10 @@ import PeopleResultsList from './PeopleResultsList';
 
 let wrapper, data;
 
-describe('<ResultsList />', () => {
+describe('<PeopleResultsList />', () => {
 
     beforeAll(() => {
-        wrapper = shallow(<ResultsList />)
+        wrapper = shallow(<PeopleResultsList />)
         data = [{
             "id": 132,
             "first_name": "Macie",
