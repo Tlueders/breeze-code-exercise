@@ -86,7 +86,7 @@ We’re a fully remote team so communication is really important. Be sure to inc
 
 Good luck and we'll get back to you once we review it!
 
-## Directions
+## Testing Directions
 
 I have added a couple new dependencies in order to complete this project.
 To install those dependencies and get everything running:
