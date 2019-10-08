@@ -37,15 +37,12 @@ class GroupsController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'group_name' => 'required|max:255'
-        ]);
+        $groups = $request->json()->all();
+        foreach ($groups as $group) {
+            Group::firstOrCreate(['group_name'=>$group['group_name']]);
+        }
 
-        $group = Group::create($request->all());
-
-        return (new GroupResource($group))
-            ->response()
-            ->setStatusCode(201);
+        return response()->json(null, 201);
     }
 
     /**

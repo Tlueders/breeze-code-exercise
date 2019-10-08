@@ -25,7 +25,7 @@ class UploadModal extends Component {
         const data = parseCsv(this.state.data, type);
         
         if(type === 'people') {
-            fetch('/api/people', {
+            fetch('http://localhost:8000/api/people', {
                 method: 'post',
                 headers: {
                     'Accept': 'application/json',
@@ -34,7 +34,7 @@ class UploadModal extends Component {
                 body: data
             });
         } else if (type === 'groups') {
-            fetch('/api/groups', {
+            fetch('http://localhost:8000/api/groups', {
                 method: 'post',
                 headers: {
                     'Accept': 'application/json',
