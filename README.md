@@ -85,3 +85,15 @@ We love TDD! So we’d love to see tests for the API and ReactJS application. Wr
 We’re a fully remote team so communication is really important. Be sure to include any instructions needed for any of our team mates to run and test.
 
 Good luck and we'll get back to you once we review it!
+
+## Directions
+
+I have added a couple new dependencies in order to complete this project.
+To install those dependencies and get everything running:
+`composer install && php artisan key:generate && php artisan migrate`
+`yarn install`
+
+`php artisan serve`
+`yarn start`
+
+I have provided 2 example CSV's (groups and people) to test uploading the data. The CSV's are located here: `codingcoding-exercise-api-react/example-csv`
