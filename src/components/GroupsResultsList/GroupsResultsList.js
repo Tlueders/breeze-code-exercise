@@ -1,11 +1,34 @@
 import React, { Component } from 'react'
+import _ from 'lodash'
 import { Table } from 'semantic-ui-react'
-import { groupBy } from '../../../../../Library/Caches/typescript/3.6/node_modules/rxjs/internal/operators/groupBy';
 
-class PeopleResultsList extends Component {
+class GroupsResultsList extends Component {
     constructor(props) {
         super(props);
-        this.state = { data: [] };
+        this.state = { 
+          data: [],
+          column: null,
+          direction: null,
+        };
+    }
+
+    handleSort = (clickedColumn) => () => {
+      const { column, data, direction } = this.state
+  
+      if (column !== clickedColumn) {
+        this.setState({
+          column: clickedColumn,
+          data: _.sortBy(data, [clickedColumn]),
+          direction: 'ascending',
+        })
+  
+        return
+      }
+  
+      this.setState({
+        data: data.reverse(),
+        direction: direction === 'ascending' ? 'descending' : 'ascending',
+      })
     }
 
     componentDidMount() {
@@ -15,13 +38,33 @@ class PeopleResultsList extends Component {
     }
 
     render() {
-        var data = this.state.data || [];
+        const { column, data, direction } = this.state
+
+        const renderGroupMembers = (group) => {
+
+          let people = group.person.map((person, index) => {
+            return <li key={index}>{person.first_name + ' ' + person.last_name}</li>;
+          });
+
+          return <ul>{people}</ul>;
+        }
 
         return (
-            <Table celled padded>
+            <Table celled padded sortable fixed>
               <Table.Header>
                 <Table.Row>
-                  <Table.HeaderCell singleLine>Group Name</Table.HeaderCell>
+                  <Table.HeaderCell
+                    sorted={column === 'group_id' ? direction : null}
+                    onClick={this.handleSort('group_id')}
+                  >
+                    Group ID
+                  </Table.HeaderCell>
+                  <Table.HeaderCell
+                    sorted={column === 'group_name' ? direction : null}
+                    onClick={this.handleSort('group_name')}
+                  >
+                    Group Name
+                  </Table.HeaderCell>
                   <Table.HeaderCell>Group Members</Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
@@ -32,8 +75,9 @@ class PeopleResultsList extends Component {
                   data.map((group, index) => {
                       return (
                           <Table.Row key={index}>
-                              <Table.Cell singleLine>{ group.group_name }</Table.Cell>
-                              <Table.Cell singleLine>{ group.members }</Table.Cell>
+                              <Table.Cell>{ group.id }</Table.Cell>
+                              <Table.Cell>{ group.group_name }</Table.Cell>
+                              <Table.Cell>{ renderGroupMembers(group) }</Table.Cell>
                           </Table.Row>
                       );
                     })
@@ -46,4 +90,4 @@ class PeopleResultsList extends Component {
 
 }
 
-export default PeopleResultsList;
+export default GroupsResultsList;

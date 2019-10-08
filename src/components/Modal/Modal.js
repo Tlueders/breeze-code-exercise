@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Button, Header, Modal, Menu } from 'semantic-ui-react'
+import { Button, Header, Modal, Menu, Message } from 'semantic-ui-react'
 import CSVReader from "react-csv-reader";
 import {determineCsvType, parseCsv} from '../../helpers';
 
@@ -7,7 +7,8 @@ class UploadModal extends Component {
     constructor(){
         super();
         this.state = {
-            data: []
+            data: [],
+            success: false,
         }
 
         this.handleForce = this.handleForce.bind(this);
@@ -32,6 +33,13 @@ class UploadModal extends Component {
                     'Content-Type': 'application/json'
                 },
                 body: data
+            })
+            .then(res => {
+                if(res.status === 201){
+                    this.setState({
+                        success: true
+                    })
+                }
             });
         } else if (type === 'groups') {
             fetch('http://localhost:8000/api/groups', {
@@ -41,6 +49,13 @@ class UploadModal extends Component {
                     'Content-Type': 'application/json'
                 },
                 body: data
+            })
+            .then(res => {
+                if(res.status === 201){
+                    this.setState({
+                        success: true
+                    })
+                }
             });
         } else {
             console.log('unrecognized CSV type');
@@ -48,6 +63,20 @@ class UploadModal extends Component {
     }
 
     render(){
+
+        const MessageExamplePositive = () => {
+            if(this.state.success === true) {
+                return (
+                    <Message positive>
+                    <Message.Header>Success</Message.Header>
+                    <p>
+                        Your CSV was successfully imported.
+                    </p>
+                    </Message>
+                );
+            }
+        };
+
         return(
             <Modal trigger={
                 <Menu.Item
@@ -64,6 +93,7 @@ class UploadModal extends Component {
                         onFileLoaded={this.handleForce}
                     />
                     <Button onClick={this.handleClick} primary style={{marginTop: '1rem'}}>Upload</Button>
+                    {MessageExamplePositive()}
                 </Modal.Description>
                 </Modal.Content>
             </Modal>
