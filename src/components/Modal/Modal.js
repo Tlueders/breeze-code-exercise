@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { Button, Header, Modal, Menu } from 'semantic-ui-react'
 import CSVReader from "react-csv-reader";
-import {determineCsvType} from '../../helpers';
+import {determineCsvType, parseCsv} from '../../helpers';
 
 class UploadModal extends Component {
     constructor(){
@@ -22,19 +22,25 @@ class UploadModal extends Component {
 
     handleClick() {
         const type = determineCsvType(this.state.data);
+        const data = parseCsv(this.state.data, type);
+        
         if(type === 'people') {
             fetch('/api/people', {
                 method: 'post',
-                body: {
-                 "data": this.state.data
-                }
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: data
             });
         } else if (type === 'groups') {
             fetch('/api/groups', {
                 method: 'post',
-                body: {
-                 "data": this.state.data
-                }
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: data
             });
         } else {
             console.log('unrecognized CSV type');

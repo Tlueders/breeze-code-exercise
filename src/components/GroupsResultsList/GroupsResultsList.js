@@ -32,7 +32,7 @@ class PeopleResultsList extends Component {
                   data.map((group, index) => {
                       return (
                           <Table.Row key={index}>
-                              <Table.Cell singleLine>{ group.name }</Table.Cell>
+                              <Table.Cell singleLine>{ group.group_name }</Table.Cell>
                               <Table.Cell singleLine>{ group.members }</Table.Cell>
                           </Table.Row>
                       );
