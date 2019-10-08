@@ -14,6 +14,7 @@ describe('<PeopleResultsList />', () => {
             "last_name": "Emmerich",
             "email_address": "cremin.marjory@hotmail.com",
             "status": "active",
+            "group_id": 1,
             "updated_at": "2019-07-20 22:05:47",
             "created_at": "2019-07-20 22:05:47"
         }]

@@ -22,7 +22,8 @@ export const parseCsv = (data, type) => {
                     "first_name": item[1],
                     "last_name": item[2],
                     "email_address": item[3],
-                    "status": item[4]
+                    "status": item[4],
+                    "group_id": item[5]
                 }
     
                 newArr.push(obj);

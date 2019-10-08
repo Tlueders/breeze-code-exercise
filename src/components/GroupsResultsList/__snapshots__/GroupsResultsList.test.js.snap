@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<PeopleResultsList /> should match the snapshot 1`] = `
+exports[`<GroupsResultsList /> should match the snapshot 1`] = `
 <Table
   as="table"
   celled={true}
@@ -18,38 +18,21 @@ exports[`<PeopleResultsList /> should match the snapshot 1`] = `
       <TableHeaderCell
         as="th"
         onClick={[Function]}
-        singleLine={true}
-        sorted={null}
-      >
-        First Name
-      </TableHeaderCell>
-      <TableHeaderCell
-        as="th"
-        onClick={[Function]}
-        sorted={null}
-      >
-        Last Name
-      </TableHeaderCell>
-      <TableHeaderCell
-        as="th"
-        onClick={[Function]}
-        sorted={null}
-      >
-        Email
-      </TableHeaderCell>
-      <TableHeaderCell
-        as="th"
-        onClick={[Function]}
-        sorted={null}
-      >
-        Status
-      </TableHeaderCell>
-      <TableHeaderCell
-        as="th"
-        onClick={[Function]}
         sorted={null}
       >
         Group ID
+      </TableHeaderCell>
+      <TableHeaderCell
+        as="th"
+        onClick={[Function]}
+        sorted={null}
+      >
+        Group Name
+      </TableHeaderCell>
+      <TableHeaderCell
+        as="th"
+      >
+        Group Members
       </TableHeaderCell>
     </TableRow>
   </TableHeader>
@@ -64,27 +47,23 @@ exports[`<PeopleResultsList /> should match the snapshot 1`] = `
       <TableCell
         as="td"
       >
-        Macie
-      </TableCell>
-      <TableCell
-        as="td"
-      >
-        Emmerich
-      </TableCell>
-      <TableCell
-        as="td"
-      >
-        cremin.marjory@hotmail.com
-      </TableCell>
-      <TableCell
-        as="td"
-      >
-        active
-      </TableCell>
-      <TableCell
-        as="td"
-      >
         1
+      </TableCell>
+      <TableCell
+        as="td"
+      >
+        Volunteers
+      </TableCell>
+      <TableCell
+        as="td"
+      >
+        <ul>
+          <li
+            key="0"
+          >
+            Macie Emmerich
+          </li>
+        </ul>
       </TableCell>
     </TableRow>
   </TableBody>
