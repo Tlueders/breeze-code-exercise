@@ -40,7 +40,7 @@ class GroupsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'group.*.group_name'    => 'required|max:255'
+            'group.*.group_name' => 'required|max:255'
         ]);
         
         $groups = $request->json()->all();
@@ -80,12 +80,12 @@ class GroupsController extends Controller
      * @param  \App\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Group $group)
+    public function update(Request $request, $id)
     {
         $group = Group::findOrFail($id);
         $group->update($request->all());
 
-        return response()->json(null, 204);
+        return response()->json(["Success" => "Group has been updated."], 204);
     }
 
     /**

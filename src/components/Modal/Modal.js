@@ -13,6 +13,14 @@ class UploadModal extends Component {
 
         this.handleForce = this.handleForce.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.resetSuccess = this.resetSuccess.bind(this);
+    }
+
+    resetSuccess() {
+        this.setState({
+            success: false
+        })
+        window.location.reload();
     }
 
     handleForce(data) {
@@ -77,25 +85,47 @@ class UploadModal extends Component {
             }
         };
 
+        const renderModalContent = () => {
+            if(this.state.success !== true) {
+                return (
+                    <>
+                        <Modal.Header>Upload a CSV</Modal.Header>
+                        <Modal.Content>
+                        <Modal.Description>
+                            <Header>Import your CSV for People or Groups</Header>
+                            <CSVReader
+                                onFileLoaded={this.handleForce}
+                            />
+                            <Button onClick={this.handleClick} primary style={{marginTop: '1rem'}}>Upload</Button>
+                        </Modal.Description>
+                        </Modal.Content>
+                    </>
+                );
+            } else {
+                return (
+                    <>
+                        <Modal.Header>Import Successful</Modal.Header>
+                        <Modal.Content>
+                        <Modal.Description>
+                            <Header>Refresh content</Header>
+                            {MessageExamplePositive()}
+                            <Button onClick={this.resetSuccess} primary style={{marginTop: '1rem'}}>Refresh</Button>
+                        </Modal.Description>
+                        </Modal.Content>
+                    </>
+                );
+            }
+        }
+
         return(
-            <Modal trigger={
+            <Modal closeIcon open={this.state.open} trigger={
                 <Menu.Item
                     name='upload'
                     >
                     Upload CSV
                 </Menu.Item>
             }>
-                <Modal.Header>Upload a CSV</Modal.Header>
-                <Modal.Content>
-                <Modal.Description>
-                    <Header>Import your CSV for People or Groups</Header>
-                    <CSVReader
-                        onFileLoaded={this.handleForce}
-                    />
-                    <Button onClick={this.handleClick} primary style={{marginTop: '1rem'}}>Upload</Button>
-                    {MessageExamplePositive()}
-                </Modal.Description>
-                </Modal.Content>
+                {renderModalContent()}
             </Modal>
         );
     }

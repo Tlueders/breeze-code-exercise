@@ -48,10 +48,10 @@ class PeopleController extends Controller
         ]); 
         $people = $request->json()->all();
         foreach ($people as $person) {
-            Person::firstOrCreate(['first_name'=>$person['first_name'], 'last_name'=>$person['last_name'], 'email_address'=>$person['email_address'], 'group_id'=>$person['group_id']]);
+            Person::firstOrCreate(["first_name"=>$person['first_name'], "last_name"=>$person['last_name'], "email_address"=>$person['email_address'], "status"=>$person['status'], "group_id"=>$person['group_id']]);
         }
 
-        return response()->json(null, 201);
+        return response()->json(["Success" => "People were added."], 201);
     }
 
     /**

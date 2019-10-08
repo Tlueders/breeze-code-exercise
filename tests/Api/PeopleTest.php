@@ -12,17 +12,16 @@ class PeopleControllerTest extends TestCase
     use WithFaker;
 
     public function testPersonCreated()
-    {
+    { 
         $expected = [
             'first_name' => 'Sally',
             'last_name' => 'Ride',
             'email_address' => 'sallyride@nasa.gov',
-            'status' => 'archived'
-        ];
-        $response = $this->json('POST', '/api/people', $expected);
-        $response
-            ->assertStatus(201)
-            ->assertJsonFragment($expected);
+            'status' => 'archived',
+            'group_id' => 1
+            ];
+        $response = $this->json('POST', '/api/people', [$expected]);
+        $response->assertStatus(201);
 
     }
 
@@ -39,6 +38,7 @@ class PeopleControllerTest extends TestCase
                     'last_name',
                     'email_address',
                     'status',
+                    'group_id',
                     'created_at',
                     'updated_at'
                 ]
