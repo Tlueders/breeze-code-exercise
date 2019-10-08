@@ -43,11 +43,12 @@ class PeopleController extends Controller
             'people.*.first_name'    => 'required|max:255',
             'people.*.last_name'     => 'required|max:255',
             'people.*.email_address' => 'required|email',
+            'people.*.group_id'      => 'integer',
             'people.*.status'        => Rule::in(['active', 'archived'])
         ]); 
         $people = $request->json()->all();
         foreach ($people as $person) {
-            Person::firstOrCreate(['first_name'=>$person['first_name'], 'last_name'=>$person['last_name'], 'email_address'=>$person['email_address']]);
+            Person::firstOrCreate(['first_name'=>$person['first_name'], 'last_name'=>$person['last_name'], 'email_address'=>$person['email_address'], 'group_id'=>$person['group_id']]);
         }
 
         return response()->json(null, 201);

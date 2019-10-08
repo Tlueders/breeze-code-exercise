@@ -18,7 +18,7 @@ class GroupsController extends Controller
     public function index()
     {
         $groups = Group::with('person')->get();
-        return response()->json($groups, 201);
+        return new GroupCollection($groups);
     }
 
     /**
@@ -94,7 +94,7 @@ class GroupsController extends Controller
      * @param  \App\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Group $group)
+    public function destroy($id)
     {
         $group = Group::findOrFail($id);
         $group->delete();
