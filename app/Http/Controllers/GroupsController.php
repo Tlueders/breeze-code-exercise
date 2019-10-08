@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\GroupCollection;
 use App\Http\Resources\GroupResource;
 use App\Models\Group;
+use App\Models\Person;
 use Illuminate\Http\Request;
 
 class GroupsController extends Controller
@@ -16,7 +17,8 @@ class GroupsController extends Controller
      */
     public function index()
     {
-        return new GroupCollection(Group::all());
+        $groups = Group::with('person')->get();
+        return response()->json($groups, 201);
     }
 
     /**
@@ -46,7 +48,7 @@ class GroupsController extends Controller
             Group::firstOrCreate(['group_name'=>$group['group_name']]);
         }
 
-        return response()->json(null, 201);
+        return response()->json(["Success" => "Groups were added"], 201);
     }
 
     /**
