@@ -17,7 +17,6 @@ export default class Navbar extends Component {
             <Menu.Item
             name='people'
             active={activeItem === 'people'}
-            onClick={this.handleItemClick}
             >
             People
             </Menu.Item>
@@ -27,7 +26,6 @@ export default class Navbar extends Component {
             <Menu.Item
             name='groups'
             active={activeItem === 'groups'}
-            onClick={this.handleItemClick}
             >
             Groups
             </Menu.Item>
