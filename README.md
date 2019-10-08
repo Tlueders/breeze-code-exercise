@@ -97,3 +97,6 @@ To install those dependencies and get everything running:
 `yarn start`
 
 I have provided 2 example CSV's (groups and people) to test uploading the data. The CSV's are located here: `codingcoding-exercise-api-react/example-csv`
+
+To run UI unit tests: `yarn run test`
+To run Laravel unit tests: `./vendor/bin/phpunit`
