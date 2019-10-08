@@ -1,0 +1,4 @@
+id,first_name,last_name,email_address,status,group_id
+1,Alex,Smith,asmith@gmail.com,active,1
+2,Jon,VerLee,jon@breezechms.com,archived,2
+3,Fred,Flinstone,fredflinstone@example.com,active,3
