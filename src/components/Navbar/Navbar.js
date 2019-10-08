@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom';
+import Modal from '../Modal/Modal';
 
 export default class Navbar extends Component {
   state = {}
@@ -31,6 +32,10 @@ export default class Navbar extends Component {
             Groups
             </Menu.Item>
         </NavLink>
+
+        <Menu.Menu position='right'>
+          <Modal />
+        </Menu.Menu>
       </Menu>
     )
   }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ResultsList from './ResultsList';
+import PeopleResultsList from './PeopleResultsList';
 
 let wrapper, data;
 

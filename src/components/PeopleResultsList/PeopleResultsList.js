@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Table } from 'semantic-ui-react'
 
-class ResultsList extends Component {
+class PeopleResultsList extends Component {
     constructor(props) {
         super(props);
         this.state = { data: [] };
@@ -49,4 +49,4 @@ class ResultsList extends Component {
 
 }
 
-export default ResultsList
+export default PeopleResultsList;
